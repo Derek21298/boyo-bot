@@ -29,9 +29,11 @@ client.on('message', message => {
     if(command === 'ping') {
         client.commands.get('ping').execute(message, args);
     }
+    // Sends an AYAYA picture to chat
     else if(command === 'ayaya') {
         client.commands.get('AYAYA').execute(message, args);
     }
+    // Sends a "Weebs Out" picture to chat
     else if(command === 'noweebs') {
         client.commands.get('noweebs').execute(message, args);
     }
@@ -40,16 +42,18 @@ client.on('message', message => {
 client.on('message', function(message) {
     client.on('voiceStateUpdate', (oldMember, newMember) => {
         console.log('Inside voiceStateUpdate');
-        let newUserChannel = newMember.voiceChannel;
-        let oldUserChannel = oldMember.voiceChannel;
+        let newUserChannel = newMember.channelID;
+        let oldUserChannel = oldMember.channelID;
 
-        var channel = client.channels.cache.filter((channel) => channel.id === '728393039474851875');
+        console.log(newMember.member.user.username);
 
-        if(oldUserChannel === 728393039474851877 && newUserChannel !== 783130220013944873) {
-                message.channel.send('has joined a voice channel');
+        var channel = client.channels.cache.filter((channel) => channel.id === '728393039474851875').first();
+
+        if(newUserChannel === '728393039474851877') {
+                message.channel.send(newMember.member.user.username + ' joined General Voice Chat!');
         }
-        else if( newUserChannel === 783130220013944873) {
-            message.channel.send('has left a voice channel');
+        else if(newUserChannel === '783130220013944873') {
+            message.channel.send(newMember.member.user.username + ' joined Fucking Sinners Voice Chat!');
         }
     });
 });
