@@ -29,6 +29,12 @@ client.on('message', message => {
     if(command === 'ping') {
         client.commands.get('ping').execute(message, args);
     }
+    else if(command === 'ayaya') {
+        client.commands.get('AYAYA').execute(message, args);
+    }
+    else if(command === 'noweebs') {
+        client.commands.get('noweebs').execute(message, args);
+    }
 });
 
 client.on('message', function(message) {
