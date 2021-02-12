@@ -39,24 +39,59 @@ client.on('message', message => {
     }
 });
 
-client.on('message', function(message) {
-    client.on('voiceStateUpdate', (oldMember, newMember) => {
-        console.log('Inside voiceStateUpdate');
-        let newUserChannel = newMember.channelID;
-        let oldUserChannel = oldMember.channelID;
+client.on('voiceStateUpdate', (oldMember, newMember) => {
+    const newUserChannel = newMember.channelID;
+    //const oldUserChannel = oldMember.channelID;
+    const botTestCommandsID = '809620229885526046';
+    const dictID = {
+        'generalVC': '728393039474851877',
+        'sinnersVC': '783130220013944873',
+        'schoolWorkVC': '783057081589694516',
+        'overwatchVC': '744719590747013180',
+        'streamingVC': '729420378656604181',
+        'smashVC': '728394091083202723',
+        'degenVC': '734047189202108416',
+        'animeVC': '728394152630550648',
+        'creativeVC': '728394115150119004',
+        'AFKVC': '732337262049624094'
+    }
+    
+    console.log(newMember);
+    //console.log(newMember.member.joinedTimestamp);
 
-        //console.log(newMember.);
+    // Set the channel for the bot to send messages to: bot-test-commands
+    //var channel = client.channels.cache.filter((channel) => channel.id === '7809620229885526046').first();
 
-        // Set the channel for the bot to send messages to: bot-test-commands
-        var channel = client.channels.cache.filter((channel) => channel.id === '7809620229885526046').first();
-
-        if(newUserChannel === '728393039474851877') {
-                message.channel.send(newMember.member.user.username + ' joined General Voice Chat!');
-        }
-        else if(newUserChannel === '783130220013944873') {
-            message.channel.send(newMember.member.user.username + ' joined Fucking Sinners Voice Chat!');
-        }
-    });
+    if(newUserChannel === dictID['generalVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined General VC!');
+    }
+    else if(newUserChannel === dictID['sinnersVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Fucking Sinners VC!');
+    }
+    else if(newUserChannel === dictID['schoolWorkVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined School/Work VC!');
+    }
+    else if(newUserChannel === dictID['overwatchVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Overwatch VC!');
+    }
+    else if(newUserChannel === dictID['streamingVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Streaming VC!');
+    }
+    else if(newUserChannel === dictID['smashVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Smash VC!');
+    }
+    else if(newUserChannel === dictID['degenVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Degenerates VC!');
+    }
+    else if(newUserChannel === dictID['animeVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Anime VC!');
+    }
+    else if(newUserChannel === dictID['creativeVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Creative VC!');
+    }
+    else if(newUserChannel === dictID['AFKVC']) {
+        client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined AFK VC!');
+    }
 });
 
 // Debugging to make sure the bot is active.
