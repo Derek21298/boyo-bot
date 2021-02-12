@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
+const myArgs = process.argv; 
+
 // Create the Discord Connection
 const client = new Discord.Client();
 
@@ -52,4 +54,4 @@ client.once('ready', () => {
 })
 
 // This will connect to the discord server and start the bot.
-client.login('ODA5NTkzNTM2ODE1MTY5NTc3.YCXWvA.MalAW1dMjS-XLB2zhc0r5JdSjjY');
+client.login(myArgs[2]);
