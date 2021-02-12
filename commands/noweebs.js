@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args) {
         message.channel.send('', {
             files: [
-                "./weebs-out.jpeg"
+                "./images/weebs-out.jpeg"
             ]
         });
     }

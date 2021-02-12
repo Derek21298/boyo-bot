@@ -45,9 +45,10 @@ client.on('message', function(message) {
         let newUserChannel = newMember.channelID;
         let oldUserChannel = oldMember.channelID;
 
-        console.log(newMember.member.user.username);
+        //console.log(newMember.);
 
-        var channel = client.channels.cache.filter((channel) => channel.id === '728393039474851875').first();
+        // Set the channel for the bot to send messages to: bot-test-commands
+        var channel = client.channels.cache.filter((channel) => channel.id === '7809620229885526046').first();
 
         if(newUserChannel === '728393039474851877') {
                 message.channel.send(newMember.member.user.username + ' joined General Voice Chat!');

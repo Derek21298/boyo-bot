@@ -5,7 +5,7 @@ module.exports = {
     execute(message, args) {
         message.channel.send('AYAYAYAYAYAYAYA', {
             files: [
-                "./ayaya-emote.png"
+                "./images/ayaya-emote.png"
             ]
         });
     }
