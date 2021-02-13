@@ -38,6 +38,10 @@ client.on('message', message => {
     } else {
       console.log(`Could not find command ${command}`);
     }
+    // Sends a random meme from the meme chat
+    else if(command === 'meme') {
+        client.commands.get('meme').execute(client, message, args);
+    }
 });
 
 client.on('voiceStateUpdate', (oldMember, newMember) => {
