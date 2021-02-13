@@ -9,6 +9,7 @@
   "author": "Derek Haas",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "^12.5.1"
+    "discord.js": "^12.5.1",
+    "selenium-webdriver": "^4.0.0-alpha.8"
   }
 }

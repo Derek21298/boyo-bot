@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
+const { echoFactory } = require("./lib/echo.js");
+
 const myArgs = process.argv; 
 
 // Create the Discord Connection
@@ -18,29 +20,31 @@ for(const file of commandFiles) {
     client.commands.set(command.name, command)
 }
 
+// Add new "call response" type commands in this list
+// With the syntax [<command>, <response>, <response image | null>]
+[
+  ["ping", "pong", null],
+  ["yep", "cock.", "YEPCOCK.jpg"],
+  ["cock", "yep", null],
+  ["ayaya", "AYAYAYAYAYAYAYA", "ayaya-emote.png"],
+  ["noweebs", "", "weebs-out.jpeg"]
+].forEach(([call, response, image]) => {
+  client.commands.set(call, echoFactory(call, response, image));
+});
+
 // When a message is sent, check if the message has the '<>' prefix then execute the command.
 client.on('message', message => {
+  //console.log(message);
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     // Slice the prefix from the command and make lowercase 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    // Ping command: Bot replies 'Pong!'
-    if(command === 'ping') {
-        client.commands.get('ping').execute(message, args);
-    }
-    // Sends an AYAYA picture to chat
-    else if(command === 'ayaya') {
-        client.commands.get('AYAYA').execute(message, args);
-    }
-    // Sends a "Weebs Out" picture to chat
-    else if(command === 'noweebs') {
-        client.commands.get('noweebs').execute(message, args);
-    }
-    // Sends a random meme from the meme chat
-    else if(command === 'meme') {
-        client.commands.get('meme').execute(client, message, args);
+    if (client.commands.has(command)) {
+      client.commands.get(command).execute(client, message, args);
+    } else {
+      console.log(`Could not find command ${command}`);
     }
 });
 
