@@ -2,3 +2,6 @@ bot.sh
 node_modules
 debug.log
 .DS_Store
+
+# auto generated photos
+imagtes/AUTO_*

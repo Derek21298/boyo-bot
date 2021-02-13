@@ -44,7 +44,7 @@ module.exports = {
     name: 'leffen',
     description: 'Posts the last tweet from Deep Leffen',
     
-    execute(message, _args) {
+    execute(_client, message, _args) {
       console.log("execute command");
       lastLeffen().then(file => {
         console.log(file);

@@ -20,8 +20,16 @@ for(const file of commandFiles) {
     client.commands.set(command.name, command)
 }
 
-[["ping", "pong"], ["yep", "cock."], ["cock", "yep"]].forEach(([call, response]) => {
-  client.commands.set(call, echoFactory(call, response));
+// Add new "call response" type commands in this list
+// With the syntax [<command>, <response>, <response image | null>]
+[
+  ["ping", "pong", null],
+  ["yep", "cock.", "YEPCOCK.jpg"],
+  ["cock", "yep", null],
+  ["ayaya", "AYAYAYAYAYAYAYA", "ayaya-emote.png"],
+  ["noweebs", "", "weebs-out.jpeg"]
+].forEach(([call, response, image]) => {
+  client.commands.set(call, echoFactory(call, response, image));
 });
 
 // When a message is sent, check if the message has the '<>' prefix then execute the command.
@@ -34,13 +42,9 @@ client.on('message', message => {
     const command = args.shift().toLowerCase();
 
     if (client.commands.has(command)) {
-      client.commands.get(command).execute(message, args);
+      client.commands.get(command).execute(client, message, args);
     } else {
       console.log(`Could not find command ${command}`);
-    }
-    // Sends a random meme from the meme chat
-    else if(command === 'meme') {
-        client.commands.get('meme').execute(client, message, args);
     }
 });
 
