@@ -48,9 +48,11 @@ client.on('message', message => {
     }
 });
 
+/*
 client.on('voiceStateUpdate', (oldMember, newMember) => {
     client.commands.get('voice-chat-recognition').execute(client, oldMember, newMember);
 });
+*/
 
 // Debugging to make sure the bot is active.
 client.once('ready', () => {
