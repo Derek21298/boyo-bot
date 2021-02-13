@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const fs = require('fs');
 
+const { echoFactory } = require("./lib/echo.js");
+
 const myArgs = process.argv; 
 
 // Create the Discord Connection
@@ -18,25 +20,23 @@ for(const file of commandFiles) {
     client.commands.set(command.name, command)
 }
 
+[["ping", "pong"], ["yep", "cock."], ["cock", "yep"]].forEach(([call, response]) => {
+  client.commands.set(call, echoFactory(call, response));
+});
+
 // When a message is sent, check if the message has the '<>' prefix then execute the command.
 client.on('message', message => {
+  //console.log(message);
     if(!message.content.startsWith(prefix) || message.author.bot) return;
 
     // Slice the prefix from the command and make lowercase 
     const args = message.content.slice(prefix.length).split(/ +/);
     const command = args.shift().toLowerCase();
 
-    // Ping command: Bot replies 'Pong!'
-    if(command === 'ping') {
-        client.commands.get('ping').execute(message, args);
-    }
-    // Sends an AYAYA picture to chat
-    else if(command === 'ayaya') {
-        client.commands.get('AYAYA').execute(message, args);
-    }
-    // Sends a "Weebs Out" picture to chat
-    else if(command === 'noweebs') {
-        client.commands.get('noweebs').execute(message, args);
+    if (client.commands.has(command)) {
+      client.commands.get(command).execute(message, args);
+    } else {
+      console.log(`Could not find command ${command}`);
     }
 });
 
