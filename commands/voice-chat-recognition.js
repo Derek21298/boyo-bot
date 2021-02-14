@@ -4,7 +4,7 @@ module.exports = {
     
     execute(client, oldMember, newMember) {
         const newUserChannel = newMember.channelID;
-        //const oldUserChannel = oldMember.channelID;
+        const oldUserChannel = oldMember.channelID;
 
         // Set the channel for the bot to send messages to: bot-test-commands
         const botTestCommandsID = '809620229885526046';
@@ -25,36 +25,86 @@ module.exports = {
         
         console.log(newMember);
         //console.log(newMember.member.joinedTimestamp);
-
-        if(newUserChannel === dictID['generalVC']) {
+/*
+        // See if someone joined / left generalVC
+        if(newUserChannel === dictID['generalVC'] || newMember.sessionID) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined General VC!');
         }
-        else if(newUserChannel === dictID['sinnersVC']) {
+        else if (oldUserChannel === dictID['generalVC'] && newUserChannel !== dictID['generalVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left General VC.');
+        }
+
+        // See if someone joined / left sinnersVC
+        if(newUserChannel === dictID['sinnersVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Fucking Sinners VC!');
         }
-        else if(newUserChannel === dictID['schoolWorkVC']) {
+        else if (oldUserChannel === dictID['sinnersVC'] && newUserChannel !== dictID['sinnersVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Fucking Sinners VC.');
+        }
+
+        // See if someone joined / left schoolWorkVC
+        if(newUserChannel === dictID['schoolWorkVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined School/Work VC!');
         }
-        else if(newUserChannel === dictID['overwatchVC']) {
+        else if (oldUserChannel === dictID['schoolWorkVC'] && newUserChannel !== dictID['schoolWorkVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left School/Work VC.');
+        }
+
+        // See if someone joined / left overwatchVC
+        if(newUserChannel === dictID['overwatchVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Overwatch VC!');
         }
-        else if(newUserChannel === dictID['streamingVC']) {
+        else if (oldUserChannel === dictID['overwatchVC'] && newUserChannel !== dictID['overwatchVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Overwatch VC.');
+        }
+
+        // See if someone joined / left streamingVC
+        if(newUserChannel === dictID['streamingVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Streaming VC!');
         }
-        else if(newUserChannel === dictID['smashVC']) {
+        else if (oldUserChannel === dictID['streamingVC'] && newUserChannel !== dictID['streamingVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Streaming VC.');
+        }
+
+        // See if someone joined / left smashVC
+        if(newUserChannel === dictID['smashVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Smash VC!');
         }
-        else if(newUserChannel === dictID['degenVC']) {
+        else if (oldUserChannel === dictID['smashVC'] && newUserChannel !== dictID['smashVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Smash VC.');
+        }
+
+        // See if someone joined / left degenVC
+        if(newUserChannel === dictID['degenVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Degenerates VC!');
         }
-        else if(newUserChannel === dictID['animeVC']) {
+        else if (oldUserChannel === dictID['degenVC'] && newUserChannel !== dictID['degenVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Degenerates VC.');
+        }
+
+        // See if someone joined / left animeVC
+        if(newUserChannel === dictID['animeVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Anime VC!');
         }
-        else if(newUserChannel === dictID['creativeVC']) {
+        else if (oldUserChannel === dictID['animeVC'] && newUserChannel !== dictID['animeVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Anime VC.');
+        }
+
+        // See if someone joined / left creativeVC
+        if(newUserChannel === dictID['creativeVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined Creative VC!');
         }
-        else if(newUserChannel === dictID['AFKVC']) {
+        else if (oldUserChannel === dictID['creativeVC'] && newUserChannel !== dictID['creativeVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left Creative VC.');
+        }
+
+        // See if someone joined / left AFKVC
+        if(newUserChannel === dictID['AFKVC']) {
             client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' joined AFK VC!');
         }
+        else if (oldUserChannel === dictID['AFKVC'] && newUserChannel !== dictID['AFKVC']) {
+            client.channels.cache.get(botTestCommandsID).send(newMember.member.user.username + ' left AFK VC.');
+        }
+*/
     }
 }
