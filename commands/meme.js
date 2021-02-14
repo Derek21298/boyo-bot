@@ -7,15 +7,21 @@ module.exports = {
         channel = client.channels.cache.get('728393897914400791');
 
         // Fetch the last # amount of memes from the text channel
-        channel.messages.fetch({ limit: 10 }).then(messages => {
+        channel.messages.fetch({ limit: 100 }).then(messages => {
 
           // Pick a random meme from the list of memes
           randomMeme = messages.random();
 
-          // Send the content (twitter link) of the meme and who authored it
-          // TODO: Make the random memes work with images as well as links
-          message.channel.send("Old meme from: " + randomMeme.author.username + "\n"  + randomMeme.content);
-
+          // if there is no content, the meme is an image
+          if(!randomMeme.content) {
+              //console.log(randomMeme.attachments.values().next().value.attachment);              ;
+              message.channel.send("Old meme from: " + randomMeme.author.username + "\n" + randomMeme.attachments.values().next().value.attachment);
+          }
+          // Dont send plain text messages from memes (must be a link to meme)
+          else if(randomMeme.content.startsWith('http')) {
+            message.channel.send("Old meme from: " + randomMeme.author.username + "\n"  + randomMeme.content);
+            //console.log(randomMeme.content);
+          }
         })
         .catch(console.error);
     }
