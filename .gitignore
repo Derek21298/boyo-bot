@@ -1,11 +1,7 @@
 bot.sh
-<<<<<<< HEAD
-node_modules/
-=======
 node_modules
 debug.log
 .DS_Store
 
 # auto generated photos
 images/AUTO_*
->>>>>>> development
