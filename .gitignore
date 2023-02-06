@@ -2,6 +2,8 @@ bot.sh
 node_modules
 debug.log
 .DS_Store
+discord_bot_venv
+.env
 
 # auto generated photos
 images/AUTO_*
